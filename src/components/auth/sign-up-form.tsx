@@ -13,22 +13,24 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { type LoginFormValues, loginSchema } from "@/lib/schemas";
+import { type SignUpFormValues, signUpSchema } from "@/lib/schemas";
 
-type LoginFormProps = {
-	action: (data: LoginFormValues) => Promise<void>;
+type SignUpFormProps = {
+	action: (data: SignUpFormValues) => Promise<void>;
 };
 
-export function LoginForm({ action }: LoginFormProps) {
-	const form = useForm<LoginFormValues>({
-		resolver: zodResolver(loginSchema),
+export function SignUpForm({ action }: SignUpFormProps) {
+	const form = useForm<SignUpFormValues>({
+		resolver: zodResolver(signUpSchema),
 		defaultValues: {
+			name: "",
 			email: "",
 			password: "",
+			confirmPassword: "",
 		},
 	});
 
-	async function onSubmit(data: LoginFormValues) {
+	async function onSubmit(data: SignUpFormValues) {
 		await action(data);
 	}
 
@@ -38,6 +40,19 @@ export function LoginForm({ action }: LoginFormProps) {
 				onSubmit={form.handleSubmit(onSubmit)}
 				className="space-y-4 w-full sm:w-[400px]"
 			>
+				<FormField
+					control={form.control}
+					name="name"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Name</FormLabel>
+							<FormControl>
+								<Input placeholder="Your name" {...field} />
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
 				<FormField
 					control={form.control}
 					name="email"
@@ -59,7 +74,24 @@ export function LoginForm({ action }: LoginFormProps) {
 							<FormLabel>Password</FormLabel>
 							<FormControl>
 								<Input
-									placeholder="Enter your password"
+									placeholder="Create a password"
+									{...field}
+									type="password"
+								/>
+							</FormControl>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+				<FormField
+					control={form.control}
+					name="confirmPassword"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Confirm Password</FormLabel>
+							<FormControl>
+								<Input
+									placeholder="Confirm your password"
 									{...field}
 									type="password"
 								/>
@@ -69,7 +101,7 @@ export function LoginForm({ action }: LoginFormProps) {
 					)}
 				/>
 				<Button type="submit" className="w-full">
-					Login
+					Sign Up
 				</Button>
 			</form>
 		</Form>
