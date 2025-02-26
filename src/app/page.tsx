@@ -1,4 +1,6 @@
+import { NotesForm } from "@/components/notes/notes-form";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { PlusIcon } from "lucide-react";
 import { logout } from "./actions";
 
@@ -18,10 +20,18 @@ export default function Home() {
 					</div>
 
 					<div className="flex items-center gap-2">
-						<Button>
-							<PlusIcon className="size-4" />
-							New note
-						</Button>
+						<Dialog>
+							<DialogTrigger asChild>
+								<Button>
+									<PlusIcon className="size-4" />
+									New note
+								</Button>
+							</DialogTrigger>
+
+							<DialogContent className="p-0">
+								<NotesForm />
+							</DialogContent>
+						</Dialog>
 					</div>
 				</div>
 			</section>
