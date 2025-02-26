@@ -1,11 +1,13 @@
-import { LoginForm } from "@/components/auth/login-form"
+import { logout } from "./actions";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-4">
-      <div className="w-full max-w-md space-y-6">        
-        <LoginForm />
-      </div>
-    </main>
-  )
+    <div>
+      <h1>logado.</h1>
+      
+      <form action={logout}>
+        <button type="submit">Logout</button>
+      </form>
+    </div>
+  );
 }

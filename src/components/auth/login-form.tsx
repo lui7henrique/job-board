@@ -15,7 +15,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { LoginFormValues, loginSchema } from "@/lib/schemas"
 
-export function LoginForm() {
+type LoginFormProps = {
+  action: (data: LoginFormValues) => Promise<void>
+}
+
+export function LoginForm({ action }: LoginFormProps) {
   const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -25,7 +29,7 @@ export function LoginForm() {
   })
 
   async function onSubmit(data: LoginFormValues) {
-    console.log({data})
+    await action(data)
   }
 
   return (
