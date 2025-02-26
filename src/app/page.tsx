@@ -1,7 +1,11 @@
+import { LoginForm } from "@/components/auth/login-form"
+
 export default function Home() {
   return (
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <main className="flex min-h-screen flex-col items-center justify-center p-4">
+      <div className="w-full max-w-md space-y-6">        
+        <LoginForm />
+      </div>
+    </main>
   )
 }
