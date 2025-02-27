@@ -58,7 +58,5 @@ export async function getJobs() {
 		throw new Error(error.message);
 	}
 
-	console.log(user.id, data);
-
 	return data;
 }

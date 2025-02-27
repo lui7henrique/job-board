@@ -18,7 +18,7 @@ export default async function Home() {
 
 	return (
 		<main className="py-16 h-screen">
-			<section className="p-6 border border-dashed h-full rounded-lg max-w-2xl mx-auto bg-white">
+			<section className="p-6 border border-dashed h-full rounded-lg max-w-2xl mx-auto bg-white space-y-4">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-2">
 						<form action={logout}>
