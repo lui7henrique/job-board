@@ -5,8 +5,8 @@ import { Space_Grotesk } from "next/font/google";
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-	title: "Simple notes",
-	description: "Simple notes",
+	title: "Job Board",
+	description: "Job Board",
 };
 
 export default function RootLayout({
