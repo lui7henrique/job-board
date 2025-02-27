@@ -38,7 +38,10 @@ export function JobForm({ initialData, action }: JobFormProps) {
 
 	return (
 		<Form {...form}>
-			<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 p-6">
+			<form
+				onSubmit={form.handleSubmit(onSubmit)}
+				className="space-y-6 flex flex-col"
+			>
 				<FormField
 					control={form.control}
 					name="title"
@@ -48,9 +51,6 @@ export function JobForm({ initialData, action }: JobFormProps) {
 							<FormControl>
 								<Input placeholder="e.g. Frontend Developer" {...field} />
 							</FormControl>
-							<FormDescription>
-								Enter the title of the job position.
-							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -65,9 +65,6 @@ export function JobForm({ initialData, action }: JobFormProps) {
 							<FormControl>
 								<Input placeholder="e.g. Acme Inc." {...field} />
 							</FormControl>
-							<FormDescription>
-								Enter the name of the company offering this position.
-							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
@@ -86,16 +83,13 @@ export function JobForm({ initialData, action }: JobFormProps) {
 									{...field}
 								/>
 							</FormControl>
-							<FormDescription>
-								Provide a detailed description of the job position.
-							</FormDescription>
 							<FormMessage />
 						</FormItem>
 					)}
 				/>
 
 				<Button type="submit" disabled={form.formState.isSubmitting}>
-					{form.formState.isSubmitting ? "Saving..." : "Save"}
+					{initialData ? "Update" : "Create"}
 				</Button>
 			</form>
 		</Form>

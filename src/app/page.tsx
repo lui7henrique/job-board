@@ -17,9 +17,9 @@ export default async function Home() {
 	const { data } = await supabase.auth.getUser();
 
 	return (
-		<main className="py-16 h-screen">
-			<section className="p-6 border border-dashed h-full rounded-lg max-w-2xl mx-auto bg-white space-y-4">
-				<div className="flex justify-between">
+		<main className="py-16 h-screen bg-black">
+			<section className="border h-full rounded-lg max-w-xl mx-auto bg-white">
+				<div className="flex justify-between border-b border-dashed p-4">
 					<div className="flex items-center gap-2">
 						<form action={logout}>
 							<Button
@@ -44,7 +44,7 @@ export default async function Home() {
 								</Button>
 							</DialogTrigger>
 
-							<DialogContent className="p-0">
+							<DialogContent className="p-4">
 								<DialogHeader className="sr-only">
 									<DialogTitle>New job</DialogTitle>
 								</DialogHeader>
