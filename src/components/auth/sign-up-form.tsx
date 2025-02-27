@@ -13,7 +13,7 @@ import {
 	FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { type SignUpFormValues, signUpSchema } from "@/lib/schemas";
+import { type SignUpFormValues, signUpSchema } from "@/lib/schemas/sign-up";
 
 type SignUpFormProps = {
 	action: (data: SignUpFormValues) => Promise<void>;

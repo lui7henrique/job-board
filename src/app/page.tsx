@@ -1,39 +1,61 @@
-import { NotesForm } from "@/components/notes/notes-form";
+import { JobForm } from "@/components/jobs/form";
+import { JobList } from "@/components/jobs/job-list";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-import { PlusIcon } from "lucide-react";
-import { logout } from "./actions";
+import {
+	Dialog,
+	DialogContent,
+	DialogHeader,
+	DialogTitle,
+	DialogTrigger,
+} from "@/components/ui/dialog";
+import { createClient } from "@/lib/supabase/server";
+import { LogOut, PlusIcon } from "lucide-react";
+import { createJob, logout } from "./actions";
 
-export default function Home() {
+export default async function Home() {
+	const supabase = await createClient();
+	const { data } = await supabase.auth.getUser();
+
 	return (
 		<main className="py-16 h-screen">
 			<section className="p-6 border border-dashed h-full rounded-lg max-w-2xl mx-auto bg-white">
 				<div className="flex justify-between">
 					<div className="flex items-center gap-2">
-						<h1 className="text-2xl font-bold">My notes</h1>
-
 						<form action={logout}>
-							<Button type="submit" variant="outline">
-								Logout
+							<Button
+								type="submit"
+								variant="outline"
+								size="icon"
+								className="size-6"
+							>
+								<LogOut className="size-3" />
 							</Button>
 						</form>
+
+						<p className="text-sm text-muted-foreground">{data.user?.email}</p>
 					</div>
 
 					<div className="flex items-center gap-2">
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button>
+								<Button size="sm">
 									<PlusIcon className="size-4" />
-									New note
+									New job
 								</Button>
 							</DialogTrigger>
 
 							<DialogContent className="p-0">
-								<NotesForm />
+								<DialogHeader className="sr-only">
+									<DialogTitle>New job</DialogTitle>
+								</DialogHeader>
+
+								<JobForm action={createJob} />
 							</DialogContent>
 						</Dialog>
 					</div>
 				</div>
+
+				<JobList />
 			</section>
 		</main>
 	);
